@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jenkins
+  labels:
+    app: jenkins
+spec:
+  selector:
+    matchLabels:
+      app: jenkins
+  template:
+    metadata:
+      labels:
+        app: jenkins
+    spec:
+      serviceAccountName: jenkins-service-account
+      containers:
+      - name: jenkins
+        image: bobcrutchley/jenkins
+        ports:
+        - name: http-port
+          containerPort: 8080
+        volumeMounts:
+        - name: jenkins-jobs
+          mountPath: /var/jenkins_home/jobs
+      volumes:
+        - name: jenkins-jobs
+          gcePersistentDisk:
+            pdName: jenkins-jobs
+            fsType: ext4
