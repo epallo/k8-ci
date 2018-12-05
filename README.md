@@ -44,7 +44,7 @@ kubectl delete -f jenkins
 kubectl create -f jenkins  
 
 # run service via nginx
-kubectl get services
+kubectl get services  
 ^^ access  nginx external-ip (no need to define port)  
 
 quick check:  
