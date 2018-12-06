@@ -48,13 +48,13 @@ kubectl get services
 ^^ access  nginx external-ip (no need to define port)  
 
 ## create persistent disk to save  
-in 04_deployment file in jenkins, change mountPath to /var/jenkins_home  
+in 04_deployment file in jenkins, change mountPath to /mnt/jenkins_home  
 kubectl create -f 04_deployment  
 kubectl exec -it <jenkins pod name> bash  
 sudo chown -R jenkins:jenkins /mnt/jenkins_home (allows for next step of copying)  
 cp -r /var/jenkins_home/* /mnt/jenkins_home/
 kubectl delete -f 04_deployment  
-in 04_deployment file in jenkins, change mountPath to /mnt/jenkins_home  
+in 04_deployment file in jenkins, change mountPath to /var/jenkins_home  
 kubectl create -f 04_deployment  
         
 check:  
